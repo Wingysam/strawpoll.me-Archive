@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Strawpoll.me Archive Worker</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <div class="content">
+        <div class="columns">
+          <div class="column">
+            <div id="info">
+              <h2>How does this work?</h2>
+              <p>
+                This page makes a request to my server, then makes strawpoll API requests, then sends the results back to my server in blocks of 1000.
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div id="stats">
+              <h2>Your Stats</h2>
+              <span class="is-block">Blocks completed: <span id="completed">0</span></span>
+              <span class="is-block">Concurrent Items: <span id="threadcount">...</span> (change the query string to a number to adjust)</span>
+            </div>
+            <div id="gstats">
+              <h2>Global Stats</h2>
+              <span class="is-block">Out: <span id="out"></span></span>
+              <span class="is-block">Done: <span id="done"></span></span>
+              <span class="is-block">Todo: <span id="todo"></span></span>
+            </div>
+          </div>
+        </div>
+        <div id="threads">
+          <h2>Items</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="src/index.js"></script>
+</body>
+
+</html>
