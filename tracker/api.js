@@ -2,10 +2,13 @@ const { statSync, writeFileSync, readFileSync } = require('fs')
 const { stat, readFile } = require('fs').promises
 const express = require('express')
 const WebSocket = require('ws')
+const mkdirp = require('mkdirp')
 
-// Using everything sync is a hack to avoid giving out the same block twice
+// Using everything sync is a hack to avoid giving out the same block twice. The proper solution is to buffer tasks in memory.
 
 module.exports = () => {
+  mkdirp('blocks')
+  
   const router = express.Router({ mergeParams: true })
 
   const wss = new WebSocket.Server({ port: 3031 })
@@ -14,7 +17,7 @@ module.exports = () => {
     let i = 0
     while (true) {
       try { await statSync(`blocks/${i}`) } catch {
-        if (i > 20800) return res.json(false)
+        if (i > 21000) return res.json(false)
         await writeFileSync(`blocks/${i}`, '')
         updateStats(wss)
         return res.json(i)
